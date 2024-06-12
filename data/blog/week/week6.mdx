@@ -12,8 +12,8 @@ tags: ['week']
 
 我们可以考虑枚举山顶，再从山顶向左右两侧扩展找到山脚。两边从山脚到山顶可以利用动画规划left[i]/rught[i]进行存储当前左右山脚到山顶最长的长度。转化方程：
 
-1. 左山脚到山顶，当left[[i] > left[i-1] ,则left[i] = left[i-1] + 1反之0
-2. 右山脚到山顶，当right[i] > right[i+1] ,则right[i] = right[i+1] + 1反之0
+1. 左山脚到山顶，{'当left[i] > left[i-1] ,则left[i] = left[i-1] + 1反之0'}
+2. 右山脚到山顶，{'当right[i] > right[i+1] ,则right[i] = right[i+1] + 1反之0'}
 
 注意⚠️
 
@@ -77,12 +77,6 @@ const text = await response.text();
 console.log(text);
 ```
 
-解决了什么问题？：
-
-1. 可以不用(async () => {await fetch()}),直接使用await fetch();
-2. 模块之间进行导入导出，会遇到当前导出的值需要借助异步函数进行取值然后进行导出，利用立即执行函数的话不能判断当地promise的状态，只能通过promise的then回调进行在加载执行完进行导出，因此之前的方案是导出一个prmoise对象,从then判断异步操作有没有结束。现在之间可以在导出模块进行内部协调。
-
-参考： [阮一峰 ECMAScript 6 (ES6) 标准入门教程 第三版](https://www.bookstack.cn/read/es6-3rd/spilt.7.docs-async.md)
 
 ## Tips：[React Joyride：在您的应用程序中创建导览](https://github.com/gilbarbara/react-joyride)
 
