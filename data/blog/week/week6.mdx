@@ -1,5 +1,5 @@
 ---
-date: 2022-10-17
+date: '2022-10-17'
 title: 第六期 AARTT打卡计划
 ---
 
@@ -59,14 +59,12 @@ var intToRoman = function(num) {
 };
 ```
 
-
-
 ## Review：[Ecma International approves ECMAScript 2022: What’s new?](https://2ality.com/2022/06/ecmascript-2022.html)
 
- ES2022新增：
+ES2022新增：
 
 1. class新增了类字段，static字段和私有属性。
-![image-20220630225429952](/Users/macos/Library/Application Support/typora-user-images/image-20220630225429952.png)
+   ![image-20220630225429952](/Users/macos/Library/Application Support/typora-user-images/image-20220630225429952.png)
 
 2. await
 
@@ -78,7 +76,7 @@ const text = await response.text();
 console.log(text);
 ```
 
-解决了什么问题？： 
+解决了什么问题？：
 
 1. 可以不用(async () => {await fetch()}),直接使用await fetch();
 2. 模块之间进行导入导出，会遇到当前导出的值需要借助异步函数进行取值然后进行导出，利用立即执行函数的话不能判断当地promise的状态，只能通过promise的then回调进行在加载执行完进行导出，因此之前的方案是导出一个prmoise对象,从then判断异步操作有没有结束。现在之间可以在导出模块进行内部协调。
