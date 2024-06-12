@@ -62,7 +62,7 @@ module.exports = () => {
   return plugins.reduce((acc, next) => next(acc), {
     reactStrictMode: true,
     basePath: process.env.NODE_ENV === 'production' ? '/Front-end-learning' : '',
-    // output: 'export',
+    output: 'export',
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
     eslint: {
       dirs: ['app', 'components', 'layouts', 'scripts'],
