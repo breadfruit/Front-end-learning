@@ -68,6 +68,7 @@ module.exports = (phase) => {
       eslint: {
         dirs: ['app', 'components', 'layouts', 'scripts'],
       },
+      unoptimized: true,
       images: {
         remotePatterns: [
           {
@@ -94,6 +95,7 @@ module.exports = (phase) => {
     eslint: {
       dirs: ['app', 'components', 'layouts', 'scripts'],
     },
+    unoptimized: true,
     images: {
       remotePatterns: [
         {
