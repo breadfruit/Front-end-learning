@@ -63,7 +63,7 @@ module.exports = (phase) => {
   if (phase === PHASE_DEVELOPMENT_SERVER) {
     return  plugins.reduce((acc, next) => next(acc), {
       reactStrictMode: true,
-      basePath: process.env.NODE_ENV === 'production' ? '/Front-end-learning' : '',
+      basePath: '',
       pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
       eslint: {
         dirs: ['app', 'components', 'layouts', 'scripts'],
@@ -89,7 +89,7 @@ module.exports = (phase) => {
   }
    return plugins.reduce((acc, next) => next(acc), {
     reactStrictMode: true,
-    basePath: process.env.NODE_ENV === 'production' ? '/Front-end-learning' : '',
+    basePath: '/Front-end-learning',
     output: 'export',
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
     eslint: {
