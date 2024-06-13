@@ -1,4 +1,5 @@
 const { withContentlayer } = require('next-contentlayer2')
+const { PHASE_DEVELOPMENT_SERVER } = require('next/constants')
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true',
@@ -57,15 +58,38 @@ const securityHeaders = [
 /**
  * @type {import('next/dist/next-server/server/config').NextConfig}
  **/
-module.exports = () => {
+module.exports = (phase) => {
   const plugins = [withContentlayer, withBundleAnalyzer]
-  if(process.env.NODE_ENV === 'production') {
-    plugins['output'] = 'export'
+  if (phase === PHASE_DEVELOPMENT_SERVER) {
+    return  plugins.reduce((acc, next) => next(acc), {
+      reactStrictMode: true,
+      basePath: process.env.NODE_ENV === 'production' ? '/Front-end-learning' : '',
+      pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
+      eslint: {
+        dirs: ['app', 'components', 'layouts', 'scripts'],
+      },
+      images: {
+        remotePatterns: [
+          {
+            protocol: 'https',
+            hostname: 'picsum.photos',
+          },
+        ],
+      },
+      webpack: (config, options) => {
+        config.module.rules.push({
+          test: /\.svg$/,
+          use: ['@svgr/webpack'],
+        })
+  
+        return config
+      },
+    })
   }
-  return plugins.reduce((acc, next) => next(acc), {
+   return plugins.reduce((acc, next) => next(acc), {
     reactStrictMode: true,
     basePath: process.env.NODE_ENV === 'production' ? '/Front-end-learning' : '',
-    // output: 'export',
+    output: 'export',
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
     eslint: {
       dirs: ['app', 'components', 'layouts', 'scripts'],
