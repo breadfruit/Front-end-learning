@@ -89,7 +89,7 @@ module.exports = (phase) => {
   }
    return plugins.reduce((acc, next) => next(acc), {
     reactStrictMode: true,
-    basePath: '/Front-end-learning',
+    basePath: '',
     output: 'export',
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
     eslint: {
