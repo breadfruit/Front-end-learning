@@ -60,38 +60,9 @@ const securityHeaders = [
  **/
 module.exports = (phase) => {
   const plugins = [withContentlayer, withBundleAnalyzer]
-  if (phase === PHASE_DEVELOPMENT_SERVER) {
-    return  plugins.reduce((acc, next) => next(acc), {
-      reactStrictMode: true,
-      assetPrefix: "/",
-      basePath: '',
-      pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
-      eslint: {
-        dirs: ['app', 'components', 'layouts', 'scripts'],
-      },
-      unoptimized: true,
-      images: {
-        remotePatterns: [
-          {
-            protocol: 'https',
-            hostname: 'picsum.photos',
-          },
-        ],
-      },
-      webpack: (config, options) => {
-        config.module.rules.push({
-          test: /\.svg$/,
-          use: ['@svgr/webpack'],
-        })
-  
-        return config
-      },
-    })
-  }
-   return plugins.reduce((acc, next) => next(acc), {
+  return plugins.reduce((acc, next) => next(acc), {
     reactStrictMode: true,
-    assetPrefix: "/Front-end-learning",
-    basePath: '/Front-end-learning',
+    basePath: '/',
     output: 'export',
     pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
     eslint: {
