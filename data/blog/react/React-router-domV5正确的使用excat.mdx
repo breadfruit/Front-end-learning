@@ -1,0 +1,58 @@
+---
+date: '2023-02-14'
+title: React-router-domV5正确的使用excat
+summary: React-router 子路由渲染
+tags: ['react']
+---
+
+
+我们在使用嵌套路由的时候可以看到
+
+![Untitled](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/3f54a156-c2dc-45f9-a928-6d928e25f579/Untitled.png)
+
+是通过
+
+```jsx
+<switch>
+	<Route path='/'>
+	</Route>
+	<Route path='/home'>
+			<switch>
+				<Route path='/home/v1'>
+				</Route>
+				<Route path='/home/v2'>
+				</Route>
+			</switch>
+	</Route>
+</switch>
+```
+
+那么exact是什么意思？
+
+> When `true`, will only match if the path matches the `location.pathname`
+*exactly*.
+> 
+
+也就是当exact为true，精准匹配。那么对于嵌套路由的子路由是不会匹配到的。因为/home/v1对于是不精确的。所以当你输入/home/v1是匹配不到的。
+
+那么如何手动去渲染子路由呢？利用高阶函数包装
+
+如果路由组件是和父路由是同个页面
+
+```jsx
+return( 
+	<>
+		{}
+	</>
+)
+```
+
+如果是新的页面新的路由。可以用函数进行渲染,其中可以利用useRouteMatch获取当前路由配置。进行判断渲染。
+
+```jsx
+const renderContent = (） => {}
+
+return (
+	<div>{renderContent()}</div>
+)
+```
